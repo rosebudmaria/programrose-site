@@ -1,0 +1,11 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Program Rose">
+  <g transform="translate(60,60)">
+    <path d="M0,-48 C16,-48 32,-32 32,-16 C32,0 16,8 0,0" fill="#E8587A" opacity="0.95" transform="rotate(0)"/>
+    <path d="M0,-48 C16,-48 32,-32 32,-16 C32,0 16,8 0,0" fill="#D64D6F" opacity="0.90" transform="rotate(72)"/>
+    <path d="M0,-48 C16,-48 32,-32 32,-16 C32,0 16,8 0,0" fill="#C2185B" opacity="0.85" transform="rotate(144)"/>
+    <path d="M0,-48 C16,-48 32,-32 32,-16 C32,0 16,8 0,0" fill="#AD1457" opacity="0.80" transform="rotate(216)"/>
+    <path d="M0,-48 C16,-48 32,-32 32,-16 C32,0 16,8 0,0" fill="#E8587A" opacity="0.75" transform="rotate(288)"/>
+    <circle r="10" fill="#880E4F"/>
+    <text x="-7" y="5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="-1">&lt;/&gt;</text>
+  </g>
+</svg>

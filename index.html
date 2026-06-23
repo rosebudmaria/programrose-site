@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Program Rose · Software studio in Chattanooga, TN</title>
+<meta name="description" content="Program Rose is a boutique software studio in Chattanooga, Tennessee, building websites, online stores, and custom web tools for small businesses.">
+<link rel="icon" href="rose-mark.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FBF6F1; --ink:#211B18; --muted:#6F645B; --line:#ECE2D6; --panel:#F4EAE0;
+    --accent:#C2185B; --accent-dark:#AD1457; --accent-soft:#E8587A;
+    --dark:#211B18; --on-dark:#F4EAE0; --on-dark-muted:#B8ABA1;
+    --sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --serif:'Newsreader',Georgia,'Times New Roman',serif;
+    --wordmark:'Poppins',var(--sans);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;cursor:pointer;}
+  input,textarea,select,button{font-family:inherit;}
+  section[id]{scroll-margin-top:84px;}
+
+  .wrap{padding-inline:clamp(20px,6vw,88px);}
+  .eyebrow{font:600 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+  h2.title{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,46px);line-height:1.06;letter-spacing:-.015em;margin:0;}
+
+  /* Buttons */
+  .btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:16px;border-radius:999px;text-decoration:none;transition:background .18s ease,border-color .18s ease,color .18s ease;}
+  .btn-primary{background:var(--accent);color:#fff;padding:16px 30px;border:none;cursor:pointer;}
+  .btn-primary:hover{background:var(--accent-dark);}
+  .btn-underline{font-weight:600;color:var(--ink);border-bottom:1.5px solid #DDB3C4;padding-bottom:3px;transition:border-color .18s ease;}
+  .btn-underline:hover{border-color:var(--accent);}
+
+  /* Header */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,246,241,.88);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding-block:18px;}
+  .brand{display:flex;align-items:center;gap:13px;}
+  .brand img{width:40px;height:40px;}
+  .brand .mark-text{display:flex;flex-direction:column;line-height:1;}
+  .brand .name{font:600 16px/1 var(--wordmark);letter-spacing:.2em;color:var(--ink);}
+  .brand .sub{font:500 9px/1 var(--wordmark);letter-spacing:.32em;color:#A89A8C;margin-top:6px;}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{font:500 15px/1 var(--sans);color:#4A423C;transition:color .18s ease;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{font:600 15px/1 var(--sans);color:#fff;background:var(--accent);padding:12px 22px;border-radius:999px;transition:background .18s ease;}
+  .nav-cta:hover{background:var(--accent-dark);}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.12fr .88fr;gap:60px;align-items:center;padding-block:clamp(56px,8vw,88px);}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-.02em;margin:0 0 24px;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero p.lead{font:400 clamp(17px,2.1vw,20px)/1.62 var(--sans);color:var(--muted);margin:0 0 36px;max-width:520px;}
+  .hero-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+
+  /* Generic placeholder panel (swap for a real <img>) */
+  .ph{position:relative;border-radius:6px;background:linear-gradient(135deg,#f3e7dc,#f7dbe6);border:1px solid #ecd6c8;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ph span{font:500 12px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#b6849a;background:rgba(251,246,241,.85);padding:8px 13px;border-radius:4px;}
+  .hero .ph{width:100%;height:clamp(280px,38vw,460px);}
+
+  /* Section base */
+  .section{padding-block:clamp(56px,9vw,86px);}
+  .section.bordered{border-top:1px solid var(--line);}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:52px;flex-wrap:wrap;}
+  .section-head p{font:400 17px/1.6 var(--sans);color:var(--muted);max-width:360px;margin:0;}
+
+  /* Services */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .card{background:var(--bg);padding:clamp(28px,3.4vw,44px);}
+  .card .num{font:500 14px/1 var(--sans);letter-spacing:.12em;color:#C8A8B6;margin-bottom:24px;}
+  .card h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.1;margin:0 0 12px;}
+  .card p{font:400 16px/1.62 var(--sans);color:var(--muted);margin:0;}
+
+  /* Why */
+  .section.alt{background:var(--panel);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
+  .why-grid .item{border-top:2px solid var(--accent);padding-top:22px;}
+  .why-grid h3{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.18;margin:0 0 10px;}
+  .why-grid p{font:400 16px/1.62 var(--sans);color:var(--muted);margin:0;}
+
+  /* Work */
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .work-grid .ph{height:clamp(200px,24vw,280px);margin-bottom:20px;}
+  .work-meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .work-meta h3{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.1;margin:0;}
+  .work-meta .cat{font:500 13px/1 var(--sans);letter-spacing:.04em;color:var(--accent);text-transform:uppercase;white-space:nowrap;}
+  .work-grid p{font:400 16px/1.6 var(--sans);color:var(--muted);margin:0;}
+
+  /* Process (dark) */
+  .section.dark{background:var(--dark);color:var(--on-dark);}
+  .section.dark .eyebrow{color:var(--accent-soft);}
+  .section.dark h2.title{color:#FBF6F1;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;}
+  .steps .step{border-top:1px solid #4A3F39;padding-top:22px;}
+  .steps .n{font-family:var(--serif);font-style:italic;font-size:32px;color:var(--accent-soft);margin-bottom:14px;}
+  .steps h3{font:600 19px/1.2 var(--sans);margin:0 0 10px;color:#FBF6F1;}
+  .steps p{font:400 15px/1.6 var(--sans);color:var(--on-dark-muted);margin:0;}
+
+  /* About */
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .about .ph{height:clamp(280px,32vw,440px);}
+  .about h2.title{margin-bottom:20px;}
+  .about p{font:400 18px/1.66 var(--sans);color:var(--muted);margin:0 0 16px;}
+  .about p:last-child{margin-bottom:0;}
+
+  /* Contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .contact .lead{font:400 18px/1.64 var(--sans);color:var(--muted);margin:0 0 34px;max-width:420px;}
+  .contact h2.title{margin-bottom:20px;}
+  .contact-points{display:flex;flex-direction:column;gap:16px;}
+  .contact-points .row{display:flex;align-items:center;gap:13px;font:500 16px/1.3 var(--sans);color:var(--ink);}
+  .contact-points .ic{color:var(--accent);font-size:18px;}
+  .contact-points a:hover{color:var(--accent);}
+
+  form#quote-form{display:flex;flex-direction:column;gap:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  form#quote-form input,form#quote-form select,form#quote-form textarea{
+    width:100%;border:1px solid #E0D3C4;background:#FBF6F1;padding:15px 16px;border-radius:9px;
+    font:400 15px var(--sans);color:var(--ink);outline:none;transition:border-color .18s ease;}
+  form#quote-form select{color:var(--muted);appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%236F645B' stroke-width='1.6'/></svg>");
+    background-repeat:no-repeat;background-position:right 16px center;}
+  form#quote-form textarea{line-height:1.5;resize:vertical;min-height:120px;}
+  form#quote-form input:focus,form#quote-form select:focus,form#quote-form textarea:focus{border-color:var(--accent);}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  #form-success{display:none;background:#FBF6F1;border:1px solid #E7DCD0;border-radius:12px;padding:48px 40px;
+    flex-direction:column;justify-content:center;align-items:flex-start;min-height:100%;}
+  #form-success .h{font-family:var(--serif);font-size:30px;color:var(--ink);margin-bottom:12px;}
+  #form-success p{font:400 17px/1.6 var(--sans);color:var(--muted);margin:0;}
+  #form-error{display:none;color:var(--accent-dark);font:500 14px/1.5 var(--sans);}
+
+  /* Footer */
+  footer.foot{border-top:1px solid var(--line);}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:42px;flex-wrap:wrap;}
+  .foot-brand{display:flex;align-items:center;gap:12px;}
+  .foot-brand img{width:34px;height:34px;}
+  .foot-brand span{font:600 15px/1 var(--wordmark);letter-spacing:.18em;}
+  .foot-meta{font:400 14px/1.5 var(--sans);color:#A89A8C;}
+  .foot-meta a:hover{color:var(--accent);}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;gap:34px;}
+    .about{grid-template-columns:1fr;gap:32px;}
+    .steps{grid-template-columns:1fr 1fr;gap:28px;}
+  }
+  @media(max-width:820px){
+    .nav-links{display:none;}
+    .why-grid{grid-template-columns:1fr;gap:26px;}
+    .work-grid{grid-template-columns:1fr;gap:30px;}
+    .contact{grid-template-columns:1fr;gap:34px;}
+  }
+  @media(max-width:620px){
+    .cards{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .brand .sub{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Program Rose home">
+      <img src="rose-mark.svg" alt="Program Rose">
+      <span class="mark-text">
+        <span class="name">PROGRAM ROSE</span>
+        <span class="sub">SOFTWARE DEVELOPMENT</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Start a project</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="wrap hero">
+    <div>
+      <div class="eyebrow">Software studio · Chattanooga, Tennessee</div>
+      <h1>Thoughtful websites, built by someone who <em>picks up the phone</em>.</h1>
+      <p class="lead">Program Rose is a boutique software studio in Chattanooga, Tennessee. I design and build websites, online stores, and custom web tools for small businesses that want a real partner, not a faceless vendor.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Start a project</a>
+        <a class="btn-underline" href="#work">See what I build →</a>
+      </div>
+    </div>
+    <!-- Replace this panel with a real photo: <img src="your-photo.jpg" alt=""> -->
+    <div class="ph"><span>studio / work photo</span></div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" class="wrap section bordered">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">What I do</div>
+        <h2 class="title">Services, end to end.</h2>
+      </div>
+      <p>From a first sketch to the site your customers use every day, and everything in between.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Websites, designed and built</h3>
+        <p>Custom sites on Squarespace, Wix, WordPress, and more, from a clean one-pager to a full multi-page site.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Redesigns and overhauls</h3>
+        <p>Already have a site? I refresh the look, speed, and structure so it works as hard as you do.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Online stores and booking</h3>
+        <p>Sell online or take appointments, with e-commerce, scheduling, and payment setup wired in.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Integrations and care</h3>
+        <p>Connect the third-party tools you rely on, plus ongoing maintenance for when it is time to change something.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY ===================== -->
+  <section class="wrap section alt">
+    <div class="eyebrow">Why Program Rose</div>
+    <h2 class="title" style="max-width:720px;margin-bottom:48px;">A small studio that treats your project like it is my own.</h2>
+    <div class="why-grid">
+      <div class="item">
+        <h3>One person, start to finish</h3>
+        <p>You work directly with the person designing and building your site. No handoffs, no rotating cast.</p>
+      </div>
+      <div class="item">
+        <h3>Code worth inheriting</h3>
+        <p>Clean, documented work that you or your next developer can build on without starting over.</p>
+      </div>
+      <div class="item">
+        <h3>Local roots, remote friendly</h3>
+        <p>Proudly based in Chattanooga, working with clients across the country.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WORK ===================== -->
+  <section id="work" class="wrap section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">What I build</div>
+        <h2 class="title">The kind of work I take on.</h2>
+      </div>
+      <a class="btn-underline" href="#contact">Start a project →</a>
+    </div>
+    <div class="work-grid">
+      <div>
+        <div class="ph"><span>business site</span></div>
+        <div class="work-meta"><h3>Business and marketing sites</h3><span class="cat">Web design</span></div>
+        <p>Fast, polished sites that explain what you do and turn visitors into customers.</p>
+      </div>
+      <div>
+        <div class="ph"><span>online store</span></div>
+        <div class="work-meta"><h3>Online stores</h3><span class="cat">E-commerce</span></div>
+        <p>Storefronts with secure checkout, inventory, and shipping, ready to sell from day one.</p>
+      </div>
+      <div>
+        <div class="ph"><span>booking flow</span></div>
+        <div class="work-meta"><h3>Booking and scheduling</h3><span class="cat">Web app</span></div>
+        <p>Let clients book and pay online, synced to your calendar, with reminders built in.</p>
+      </div>
+      <div>
+        <div class="ph"><span>redesign</span></div>
+        <div class="work-meta"><h3>Redesigns and overhauls</h3><span class="cat">Brand and web</span></div>
+        <p>A faster, cleaner, more modern version of the site you already have.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section id="process" class="wrap section dark">
+    <div class="eyebrow">How I work</div>
+    <h2 class="title" style="max-width:640px;margin-bottom:52px;">No black boxes. Just a steady rhythm you can see.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Listen</h3>
+        <p>We start with your goals, your customers, and the constraints that actually matter.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Shape</h3>
+        <p>Wireframes, a prototype, and an honest plan with real estimates, before any code gets written.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Build</h3>
+        <p>Steady progress with regular check-ins. No black boxes, and you own everything.</p>
+      </div>
+      <div class="step">
+        <div class="n">04</div>
+        <h3>Launch and care</h3>
+        <p>I ship it, then stick around to keep it healthy as you grow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="wrap section about">
+    <!-- Replace this panel with a real photo: <img src="chattanooga.jpg" alt=""> -->
+    <div class="ph"><span>Chattanooga, Tennessee</span></div>
+    <div>
+      <div class="eyebrow">From the Scenic City</div>
+      <h2 class="title">Proudly built in Chattanooga, Tennessee.</h2>
+      <p>Chattanooga gave us mountain trails, the country's first gig-speed internet, and a tight-knit tech community I am glad to call home. It is where I sketch, ship, and answer the phone.</p>
+      <p>I keep the studio small on purpose. Senior-level work, direct communication, and software I am genuinely proud to put my name on.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="wrap section alt contact">
+    <div>
+      <div class="eyebrow">Start a project</div>
+      <h2 class="title">Tell me what you are building.</h2>
+      <p class="lead">Share a little about your project and I will get back to you within one business day.</p>
+      <div class="contact-points">
+        <div class="row"><span class="ic">✉</span> <a href="mailto:rosalinda@programrose.com">rosalinda@programrose.com</a></div>
+        <div class="row"><span class="ic">◷</span> Replies within one business day</div>
+        <div class="row"><span class="ic">⌖</span> Chattanooga, Tennessee</div>
+      </div>
+    </div>
+    <div>
+      <!-- Leads are emailed to rosalinda@programrose.com via FormSubmit.
+           First submission triggers a one-time activation email to that address. -->
+      <form id="quote-form" action="https://formsubmit.co/rosalinda@programrose.com" method="POST">
+        <input type="hidden" name="_subject" value="New project inquiry — Program Rose">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <div class="form-row">
+          <input name="name" placeholder="Name" required>
+          <input name="email" type="email" placeholder="Email" required>
+        </div>
+        <input name="company" placeholder="Company (optional)">
+        <select name="need" required>
+          <option value="" disabled selected>What do you need?</option>
+          <option>Custom software</option>
+          <option>Web development</option>
+          <option>Web design</option>
+          <option>Online store</option>
+          <option>Booking and scheduling</option>
+          <option>Redesign or overhaul</option>
+          <option>Support and maintenance</option>
+          <option>Not sure yet</option>
+        </select>
+        <textarea name="message" rows="4" placeholder="A little about your project..." required></textarea>
+        <div id="form-error">Something went wrong sending that. Please email rosalinda@programrose.com directly.</div>
+        <button type="submit" class="btn-primary" style="padding:16px;border-radius:999px;width:100%;">Request a quote</button>
+      </form>
+      <div id="form-success">
+        <div class="h">Message received.</div>
+        <p>I will be in touch within one business day. Talk soon.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <img src="rose-mark.svg" alt="Program Rose">
+      <span>PROGRAM ROSE</span>
+    </div>
+    <div class="foot-meta">© 2026 Program Rose · Chattanooga, Tennessee · <a href="mailto:rosalinda@programrose.com">rosalinda@programrose.com</a></div>
+  </div>
+</footer>
+
+<script>
+  // Progressive enhancement: submit the form in the background so the visitor
+  // stays on the page and sees an inline confirmation. If anything fails, fall
+  // back to a normal form POST (which still reaches FormSubmit).
+  (function () {
+    var form = document.getElementById('quote-form');
+    var success = document.getElementById('form-success');
+    var errorBox = document.getElementById('form-error');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errorBox.style.display = 'none';
+      var btn = form.querySelector('button[type=submit]');
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      fetch('https://formsubmit.co/ajax/rosalinda@programrose.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+      .then(function (r) {
+        if (!r.ok) throw new Error('bad status');
+        return r.json();
+      })
+      .then(function () {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      })
+      .catch(function () {
+        // Network/CORS/activation hiccup: let the browser POST normally.
+        btn.disabled = false;
+        btn.textContent = label;
+        form.submit();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
